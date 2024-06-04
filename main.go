@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -47,13 +48,50 @@ func main() {
 	//connetct the router into the server
 	server := &http.Server{
 		Addr:    ":" + dbPort,
-		Handler: v1Router,
+		Handler: Router,
 	}
 
+	//server is running on the port
 	fmt.Println("Server is running on port: ", dbPort)
+	//display the error if any
 	err := server.ListenAndServe()
 	if err != nil {
 		log.Fatal(err)
 	}
 
+}
+
+// HandlerRediness - check the rediness of the server - health check
+// weaher the server is ready to serve the request or not
+func HandlerRediness(w http.ResponseWriter, r *http.Request) {
+	responceWithJson(w, 200, struct{}{})
+}
+
+// responceWithJson - send the json response
+func responceWithJson(w http.ResponseWriter, code int, payload interface{}) {
+	response, err := json.Marshal(payload)
+	if err != nil {
+		log.Fatal(err, payload)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	//adding application header
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(code)
+	w.Write(response)
+}
+
+// responceWithError - send the error response
+func responceWithError(w http.ResponseWriter, code int, msg string) {
+	if code > 499 {
+		log.Println("Responding with 5XX error:", msg)
+	}
+
+	type errResponce struct {
+		ErrorMsg string `json:"message"`
+	}
+
+	responceWithJson(w, code, errResponce{
+		ErrorMsg: msg,
+	})
 }
