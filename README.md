@@ -24,8 +24,8 @@ This repository contains a Go-based backend HTTP server. The server facilitates 
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/Umayanga12/GO-backend-server.git
+    cd GO-backend-server
     ```
 
 2. Install dependencies:
