@@ -2,8 +2,7 @@
 
 ## Overview
 
-This repository contains a Go-based backend HTTP server. The server facilitates account management and token operations, providing APIs for seamless interaction with blockchain accounts, including account creation, token allocation, token burning, and more. The server uses Ganache for local blockchain development.
-
+This repository contains a Go-based backend HTTP server. The server facilitates account management and token operations, providing APIs Request Handling
 ## Features
 
 - Account creation
