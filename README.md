@@ -15,7 +15,6 @@ This repository contains a Go-based backend HTTP server. The server facilitates 
 ## Prerequisites
 
 - [Go](https://golang.org/doc/install) (version 1.16 or higher)
-- [Ganache](https://www.trufflesuite.com/ganache) (for local blockchain development)
 - [Chi Router](https://github.com/go-chi/chi)
 - [GoDotEnv](https://github.com/joho/godotenv)
 
